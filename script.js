@@ -14,19 +14,15 @@ function getParksList(searchTerm, state, maxResults) {
   const params = {
     q: searchTerm,
     stateCode: state,
-    limit: maxResults
+    limit: maxResults,
+    api_key: apiKey
   };
   const queryString = formatQueryParams(params);
   const url = baseUrl + '?' + queryString;
 
   console.log(url);
 
-  const options = {
-    headers: new Headers({
-      'X-Api-Key': apiKey,})
-  };
-
-  fetch(url, options)
+  fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
